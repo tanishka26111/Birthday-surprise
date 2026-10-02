@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  padding: 35px 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+button {
+  border: none;
+  background: white;
+  color: #e94b70;
+  padding: 15px 28px;
+  border-radius: 30px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.hidden {
+  display: none;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 25px;
+  animation: float 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.big-heart {
+  font-size: 75px;
+  animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.message {
+  background: rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page" id="start">
+  <div class="card">
+    <div class="big-heart">💗</div>
+
+    <h1>Hey You... ❤️</h1>
+
+    <p>
+      I made something special for you.
+      <br>
+      But you have to open it yourself...
+    </p>
+
+    <button onclick="openGift()">
+      🎁 Open Your Gift
+    </button>
+  </div>
+</div>
+
+
+<div class="page hidden" id="gift">
+  <div class="card">
+
+    <div class="big-heart">🎂</div>
+
+    <h1>Happy Birthday! 💕</h1>
+
+    <p>
+      To the person who makes my days a little brighter,
+      my smiles a little bigger,
+      and my heart a little happier...
+    </p>
+
+    <div class="message">
+
+      <h2>💌 A Little Message For You</h2>
+
+      <p>
+        I don't know how to put everything I feel into words,
+        but I want you to know how special you are to me.
+        <br><br>
+
+        Thank you for all the little things,
+        the laughs, the memories,
+        and all those moments that I will always remember.
+        <br><br>
+
+        I hope this birthday brings you everything
+        you've wished for.
+        <br><br>
+
+        And I hope I get to be there
+        for many more birthdays with you. ❤️
+      </p>
+
+    </div>
+
+    <button onclick="showSecret()">
+      💝 One More Thing...
+    </button>
+
+  </div>
+</div>
+
+
+<div class="page hidden" id="secret">
+  <div class="card">
+
+    <div class="big-heart">💖</div>
+
+    <h1>My Favourite Person ❤️</h1>
+
+    <p>
+      If I could give you one thing today,
+      it would be the ability to see yourself
+      through my eyes.
+      <br><br>
+
+      Then you would understand
+      just how precious you are to me.
+      <br><br>
+
+      Happy Birthday, my special one. 🎂
+    </p>
+
+    <h2>❤️❤️❤️</h2>
+
+    <p>
+      Here's to us,
+      our memories,
+      and all the beautiful moments
+      still waiting for us.
+    </p>
+
+  </div>
+</div>
+
+
+<script>
+
+function openGift() {
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("gift").classList.remove("hidden");
+  createHearts();
+}
+
+function showSecret() {
+  document.getElementById("gift").classList.add("hidden");
+  document.getElementById("secret").classList.remove("hidden");
+
+  createHearts();
+}
+
+function createHearts() {
+
+  for (let i = 0; i < 25; i++) {
+
+    let heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+      ["❤️","💗","💕","💖","💘"][Math.floor(Math.random()*5)];
+
+    heart.style.left =
+      Math.random() * 100 + "%";
+
+    heart.style.animationDuration =
+      (3 + Math.random() * 4) + "s";
+
+    heart.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    document.body.appendChild(heart);
+
+  }
+}
+
+</script>
+
+</body>
+</html>
