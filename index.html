@@ -4,387 +4,415 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
+<title>For My Baby ❤️</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Georgia,serif;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  color:white;
-  text-align:center;
-  min-height:100vh;
-  overflow-x:hidden;
+* {
+    box-sizing: border-box;
 }
-.page{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:25px;
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #71334d;
+    text-align: center;
+    background: linear-gradient(135deg, #fff0f5, #fbd0df, #fce8f0);
+    overflow-x: hidden;
 }
-.card{
-  background:rgba(255,255,255,.16);
-  backdrop-filter:blur(12px);
-  border-radius:30px;
-  padding:35px 25px;
-  width:100%;
-  max-width:950px;
-  box-shadow:0 10px 40px rgba(0,0,0,.2);
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 18px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: appear 0.8s ease;
 }
-h1{font-size:clamp(30px,6vw,42px);margin-bottom:10px}
-h2{font-size:27px}
-p{font-size:18px;line-height:1.7}
-button,.song-link{
-  border:none;
-  background:white;
-  color:#e94b70;
-  padding:14px 25px;
-  border-radius:30px;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:20px;
-  font-weight:bold;
-  text-decoration:none;
-  display:inline-block;
+
+.page.active {
+    display: flex;
 }
-button:hover,.song-link:hover{transform:scale(1.04)}
-.hidden{display:none!important}
-.heart{
-  position:fixed;
-  bottom:-25px;
-  font-size:25px;
-  animation:float 5s linear forwards;
-  pointer-events:none;
-  z-index:10;
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-@keyframes float{
-  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+
+.card {
+    width: 100%;
+    max-width: 750px;
+    padding: 30px 24px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.73);
+    box-shadow: 0 12px 40px rgba(150,60,95,0.12);
 }
-.big-heart{font-size:75px;animation:beat 1.2s infinite}
-@keyframes beat{50%{transform:scale(1.15)}}
-.message{
-  background:rgba(255,255,255,.18);
-  border-radius:20px;
-  padding:20px;
-  margin-top:20px;
+
+h1 {
+    font-size: clamp(2rem, 7vw, 3.2rem);
+    margin: 10px 0 20px;
+    color: #b34270;
 }
-.memory-section{
-  margin-top:45px;
-  padding-top:25px;
-  border-top:1px solid rgba(255,255,255,.35);
+
+h2 {
+    color: #b34270;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
 }
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:15px;
-  margin-top:22px;
+
+p {
+    font-size: 1.12rem;
+    line-height: 1.9;
 }
-.photo{
-  background:#fff7f8;
-  color:#a72e55;
-  border-radius:14px;
-  padding:9px 9px 15px;
-  box-shadow:0 5px 18px rgba(0,0,0,.12);
+
+.heart {
+    font-size: 3.5rem;
+    animation: heartbeat 1.5s infinite;
 }
-.photo img{
-  display:block;
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:9px;
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.13); }
 }
-.photo p{font-size:16px;margin:10px 3px 0}
-.video-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:15px;
-  margin-top:22px;
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    margin: 10px 5px;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(135deg, #d75b8a, #b43b70);
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(180,59,112,0.2);
 }
-.video-grid video{
-  width:100%;
-  max-height:430px;
-  border-radius:14px;
-  background:#31101e;
+
+button:hover {
+    transform: translateY(-2px);
 }
-.song-card{
-  background:rgba(255,255,255,.18);
-  border-radius:20px;
-  padding:20px;
-  margin-top:20px;
+
+.secondary {
+    background: #fff;
+    color: #b34270;
+    border: 1px solid #e9a7c1;
 }
-.song-card iframe{
-  width:100%;
-  max-width:560px;
-  aspect-ratio:16/9;
-  border:0;
-  border-radius:12px;
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    margin-top: 20px;
 }
-.small-note{font-size:13px;opacity:.9}
-@media(max-width:480px){
-  .page{padding:14px}
-  .card{padding:25px 16px}
-  .photo img{height:230px}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    background: #f6dce7;
+    box-shadow: 0 4px 14px rgba(120,40,75,0.12);
+}
+
+.video-frame {
+    width: 100%;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+video {
+    display: block;
+    width: 100%;
+    max-height: 65vh;
+    border-radius: 18px;
+    background: #2a1720;
+}
+
+.video-status {
+    font-size: 0.95rem;
+    color: #99516e;
+}
+
+.song-box {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.song-box iframe {
+    width: 100%;
+    height: 180px;
+    border: none;
+    border-radius: 15px;
+}
+
+footer {
+    margin-top: 22px;
+    font-size: 0.9rem;
+    color: #a85b79;
+}
+
+@media (max-width: 480px) {
+    .card { padding: 25px 16px; }
+    .gallery img { height: 170px; }
+    p { font-size: 1.03rem; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ORIGINAL OPENING SCREEN -->
-<div class="page" id="start">
-  <div class="card">
-    <div class="big-heart">💗</div>
-
-    <h1>Hey You... ❤️</h1>
-
-    <p>
-      I made something special for you.
-      <br>
-      But you have to open it yourself...
-    </p>
-
-    <button onclick="openGift()">🎁 Open Your Gift</button>
-  </div>
-</div>
-
-<!-- ORIGINAL BIRTHDAY LETTER: WORDING PRESERVED -->
-<div class="page hidden" id="gift">
-  <div class="card">
-
-    <div class="big-heart">🎂</div>
-
-    <h1>Happy Birthday! 💕</h1>
-
-    <p>
-      To the person who makes my days a little brighter,
-      my smiles a little bigger,
-      and my heart a little happier...
-    </p>
-
-    <div class="message">
-      <h2>💌 A Little Message For You</h2>
-
-      <p>
-        I don't know how to put everything I feel into words,
-        but I want you to know how special you are to me.
-        <br><br>
-
-        Thank you for all the little things,
-        the laughs, the memories,
-        and all those moments that I will always remember.
-        <br><br>
-
-        I hope this birthday brings you everything
-        you've wished for.
-        <br><br>
-
-        And I hope I get to be there
-        for many more birthdays with you. ❤️
-      </p>
+<!-- PAGE 1: WELCOME -->
+<section class="page active" id="welcome">
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>Hey You...</h1>
+        <p>I made something special for you.</p>
+        <p>But you have to open it yourself...</p>
+        <button onclick="showPage('letter')">🎁 Open Your Gift</button>
     </div>
+</section>
 
-    <button onclick="showSecret()">💝 One More Thing...</button>
-  </div>
-</div>
+<!-- PAGE 2: BIRTHDAY LETTER -->
+<section class="page" id="letter">
+    <div class="card">
+        <div class="heart">💕</div>
+        <h1>Happy Birthday!</h1>
 
-<!-- ORIGINAL SECRET MESSAGE + NEW MEMORIES -->
-<div class="page hidden" id="secret">
-  <div class="card">
+        <p>To the person who makes my days a little brighter, my smiles a little bigger, and my heart a little happier...</p>
 
-    <div class="big-heart">💖</div>
+        <h2>💌 A Little Message For You</h2>
 
-    <h1>My Favourite Person ❤️</h1>
+        <p>I don't know how to put everything I feel into words, but I want you to know how special you are to me.</p>
 
-    <!-- Original message preserved exactly -->
-    <p>
-      If I could give you one thing today,
-      it would be the ability to see yourself
-      through my eyes.
-      <br><br>
-      Then you would understand
-      just how precious you are to me.
-      <br><br>
+        <p>Thank you for all the little things, the laughs, the memories, and all those moments that I will always remember.</p>
 
-      Happy Birthday, my special one. 🎂
-    </p>
+        <p>I hope this birthday brings you everything you've wished for.</p>
 
-    <h2>❤️❤️❤️</h2>
+        <p>And I hope I get to be there for many more birthdays with you. ❤️</p>
 
-    <p>
-      Here's to us,
-      our memories,
-      and all the beautiful moments
-      still waiting for us.
-    </p>
-
-    <!-- NEW PHOTO GALLERY -->
-    <div class="memory-section">
-      <h1>Our Memories 📸</h1>
-      <p>Baby & Mumma — little moments, lots of love. ❤️</p>
-
-      <div class="gallery">
-        <div class="photo">
-          <img src="tv.jpeg" alt="Our memory 1" loading="lazy">
-          <p>A little piece of us 💗</p>
-        </div>
-
-        <div class="photo">
-          <img src="us.jpeg" alt="Our memory 2" loading="lazy">
-          <p>My favourite person ❤️</p>
-        </div>
-
-        <div class="photo">
-          <img src="uss.jpeg" alt="Our memory 3" loading="lazy">
-          <p>Us, always 💕</p>
-        </div>
-
-        <div class="photo">
-          <img src="v.jpeg" alt="Our memory 4" loading="lazy">
-          <p>My happy place 🥹</p>
-        </div>
-
-        <div class="photo">
-          <img src="v2.jpeg" alt="Our memory 5" loading="lazy">
-          <p>Little moments, big love 💌</p>
-        </div>
-
-        <div class="photo">
-          <img src="v3.jpeg" alt="Our memory 6" loading="lazy">
-          <p>My kind of happiness 🌷</p>
-        </div>
-
-        <div class="photo">
-          <img src="v4.jpeg" alt="Our memory 7" loading="lazy">
-          <p>Just you and me 💖</p>
-        </div>
-
-        <div class="photo">
-          <img src="v6.jpeg" alt="Our memory 8" loading="lazy">
-          <p>Forever in my heart 💞</p>
-        </div>
-
-        <div class="photo">
-          <img src="we.jpeg" alt="Our memory 9" loading="lazy">
-          <p>Our story, our way ❤️</p>
-        </div>
-      </div>
+        <button onclick="showPage('secret')">💝 One More Thing...</button>
     </div>
+</section>
 
-    <!-- NEW PERSONAL VIDEOS -->
-    <div class="memory-section">
-      <h1>Our Little Moments 🎬</h1>
-      <p>Press play to relive our memories, Baby. ❤️</p>
+<!-- PAGE 3: SECRET MESSAGE -->
+<section class="page" id="secret">
+    <div class="card">
+        <div class="heart">💗</div>
+        <h1>My Favourite Person ❤️</h1>
 
-      <div class="video-grid">
-        <video controls playsinline preload="metadata">
-          <source src="us.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <p>If I could give you one thing today, it would be the ability to see yourself through my eyes.</p>
 
-        <video controls playsinline preload="metadata">
-          <source src="v7.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <p>Then you would understand just how precious you are to me.</p>
 
-        <video controls playsinline preload="metadata">
-          <source src="we2.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <p>Happy Birthday, my special one. 🎂</p>
 
-        <video controls playsinline preload="metadata">
-          <source src="we3.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <p>❤️❤️❤️</p>
 
-        <video controls playsinline preload="metadata">
-          <source src="we5.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <p>Here's to us, our memories, and all the beautiful moments still waiting for us.</p>
 
-        <video controls playsinline preload="metadata">
-          <source src="we56mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
-      </div>
+        <button onclick="showPage('photos')">📸 Our Memories</button>
     </div>
+</section>
 
-    <!-- NEW SONG SECTION -->
-    <div class="memory-section">
-      <h1>Our Song 🎵</h1>
-      <p>For all the feelings that words cannot express. ❤️</p>
+<!-- PAGE 4: PHOTO GALLERY -->
+<section class="page" id="photos">
+    <div class="card">
+        <div class="heart">📸</div>
+        <h1>Our Little World</h1>
+        <p>Every picture holds a little piece of my heart.</p>
 
-      <div class="song-card">
-        <h2>Alfaaz — Hamza Malik × Zain Zohaib</h2>
+        <div class="gallery">
+            <img src="tv.jpeg" alt="Our memory 1" loading="lazy">
+            <img src="us.jpeg" alt="Our memory 2" loading="lazy">
+            <img src="uss.jpeg" alt="Our memory 3" loading="lazy">
+            <img src="v.jpeg" alt="Our memory 4" loading="lazy">
+            <img src="v2.jpeg" alt="Our memory 5" loading="lazy">
+            <img src="v3.jpeg" alt="Our memory 6" loading="lazy">
+            <img src="v4.jpeg" alt="Our memory 7" loading="lazy">
+            <img src="v6.jpeg" alt="Our memory 8" loading="lazy">
+            <img src="we.jpeg" alt="Our memory 9" loading="lazy">
+        </div>
 
-        <iframe
-          src="https://www.youtube.com/embed/cQq6iLF66Gc"
-          title="Alfaaz by Hamza Malik and Zain Zohaib"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+        <p>And these are only a few of my favourite memories with you. ❤️</p>
 
-        <p class="small-note">
-          If the player doesn't load, use the button below.
-        </p>
-
-        <a
-          class="song-link"
-          href="https://www.youtube.com/watch?v=cQq6iLF66Gc"
-          target="_blank"
-          rel="noopener noreferrer">
-          🎵 Play Alfaaz on YouTube
-        </a>
-      </div>
+        <button onclick="startVideos()">🎬 Relive Our Moments</button>
+        <button class="secondary" onclick="showPage('secret')">← Back</button>
     </div>
+</section>
 
-    <div class="memory-section">
-      <p>Made with all my love, just for you. ❤️</p>
-      <h2>Your Mumma 💋</h2>
+<!-- PAGE 5: VIDEOS PLAY ONE AFTER ANOTHER -->
+<section class="page" id="videos">
+    <div class="card">
+        <div class="heart">🎬</div>
+        <h1>Our Moments in Motion</h1>
+        <p>Some memories deserve to be watched, not just remembered. ❤️</p>
+
+        <div class="video-frame">
+            <video id="memoryVideo"
+                   controls
+                   playsinline
+                   preload="metadata">
+                Your browser does not support video playback.
+            </video>
+        </div>
+
+        <p class="video-status" id="videoStatus">Your memories are waiting...</p>
+
+        <button id="soundButton" onclick="enableSound()">🔊 Enable Sound</button>
+        <button class="secondary" onclick="previousVideo()">⏮ Previous</button>
+        <button onclick="nextVideo()">Next Video ⏭</button>
+        <button class="secondary" onclick="stopVideos(); showPage('photos')">← Photos</button>
+        <button onclick="goToSong()">🎶 A Song for You</button>
     </div>
+</section>
 
-  </div>
-</div>
+<!-- PAGE 6: LOVE SONG -->
+<section class="page" id="song">
+    <div class="card">
+        <div class="heart">🎶</div>
+        <h1>If My Love Were a Song...</h1>
+
+        <p>Baby, if I could express all my love for you through a song, I think it would be this one.</p>
+
+        <p>Some feelings are too beautiful for words, so let this song say what my heart feels for you. ❤️</p>
+
+        <h2>Alfaaz 💕</h2>
+        <p>Hamza Malik &amp; Zain Zohaib</p>
+
+        <div class="song-box">
+            <iframe
+                src="https://www.youtube.com/embed/cQq6iLF66Gc"
+                title="Alfaaz - Hamza Malik and Zain Zohaib"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <p>Because sometimes, a song can say what the heart cannot. ❤️</p>
+
+        <p><em>Happy Birthday, Baby. You will always have a special place in my heart.</em></p>
+
+        <div class="heart">❤️</div>
+
+        <button class="secondary" onclick="showPage('videos')">← Our Videos</button>
+        <button onclick="showPage('welcome')">↻ Start Again</button>
+    </div>
+    <footer>Made with all my love, Mumma ❤️</footer>
+</section>
 
 <script>
-function openGift(){
-  document.getElementById("start").classList.add("hidden");
-  document.getElementById("gift").classList.remove("hidden");
-  window.scrollTo(0,0);
-  createHearts();
-}
+const videoFiles = [
+    "us.mp4",
+    "v7.mp4",
+    "we2.mp4",
+    "we3.mp4",
+    "we5.mp4",
+    "we56mp4"
+];
 
-function showSecret(){
-  document.getElementById("gift").classList.add("hidden");
-  document.getElementById("secret").classList.remove("hidden");
-  window.scrollTo(0,0);
-  createHearts();
-}
+let currentVideoIndex = 0;
 
-function createHearts(){
-  for(let i=0;i<25;i++){
-    const heart=document.createElement("div");
-    heart.className="heart";
-    heart.textContent=["❤️","💗","💕","💖","💘"][
-      Math.floor(Math.random()*5)
-    ];
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(3+Math.random()*4)+"s";
-    heart.style.animationDelay=Math.random()*2+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),8000);
-  }
-}
+const memoryVideo = document.getElementById("memoryVideo");
+const videoStatus = document.getElementById("videoStatus");
+const soundButton = document.getElementById("soundButton");
 
-document.querySelectorAll("video").forEach(video=>{
-  video.addEventListener("play",()=>{
-    document.querySelectorAll("video").forEach(other=>{
-      if(other!==video) other.pause();
+function showPage(pageId) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
     });
-  });
+
+    document.getElementById(pageId).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function startVideos() {
+    showPage("videos");
+    currentVideoIndex = 0;
+    loadVideo(true);
+}
+
+function loadVideo(tryAutoplay) {
+    if (currentVideoIndex >= videoFiles.length) {
+        videoStatus.textContent = "That was our little collection of memories. ❤️";
+        memoryVideo.pause();
+        memoryVideo.removeAttribute("src");
+        memoryVideo.load();
+        soundButton.style.display = "none";
+        return;
+    }
+
+    memoryVideo.pause();
+    memoryVideo.src = videoFiles[currentVideoIndex];
+    memoryVideo.muted = true;
+    memoryVideo.load();
+
+    soundButton.style.display = "inline-block";
+    soundButton.textContent = "🔊 Enable Sound";
+
+    videoStatus.textContent =
+        "Memory " + (currentVideoIndex + 1) +
+        " of " + videoFiles.length;
+
+    if (tryAutoplay) {
+        const playPromise = memoryVideo.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                videoStatus.textContent =
+                    "Tap Play to start this memory. ❤️";
+            });
+        }
+    }
+}
+
+function enableSound() {
+    memoryVideo.muted = false;
+    memoryVideo.play().then(() => {
+        soundButton.textContent = "🔊 Sound On";
+    }).catch(() => {
+        videoStatus.textContent =
+            "Tap the video Play button to start playback with sound.";
+    });
+}
+
+function nextVideo() {
+    currentVideoIndex++;
+    loadVideo(true);
+}
+
+function previousVideo() {
+    if (currentVideoIndex > 0) {
+        currentVideoIndex--;
+        loadVideo(true);
+    } else {
+        videoStatus.textContent = "This is our first memory. ❤️";
+    }
+}
+
+function stopVideos() {
+    memoryVideo.pause();
+}
+
+function goToSong() {
+    stopVideos();
+    showPage("song");
+}
+
+/* Automatically play the next video when the current one ends. */
+memoryVideo.addEventListener("ended", () => {
+    currentVideoIndex++;
+    loadVideo(true);
+});
+
+/* Stop video playback when leaving the video page. */
+document.querySelectorAll(".page").forEach(page => {
+    page.addEventListener("click", event => {
+        if (page.id === "videos" && event.target.tagName === "BUTTON") {
+            return;
+        }
+    });
 });
 </script>
 
