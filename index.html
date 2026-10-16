@@ -241,15 +241,17 @@ footer {
         <button class="secondary" onclick="showPage('secret')">← Back</button>
     </div>
 </section>
-    <!-- Background music for video page -->
-<div id="backgroundMusic" style="display:none;">
+    
+<!-- Visible background music player -->
+<div id="backgroundMusic" style="display:none; position:fixed; bottom:12px; left:50%; transform:translateX(-50%); z-index:1000; background:white; padding:6px; border-radius:12px; box-shadow:0 4px 15px #0002;">
   <iframe
     id="backgroundSong"
-    width="1"
-    height="1"
+    width="300"
+    height="80"
     src=""
+    title="Main Agar Kahoon Lo-fi"
     allow="autoplay; encrypted-media"
-    title="Main Agar Kahoon background music">
+    style="border:0; border-radius:8px;">
   </iframe>
 </div>
 
