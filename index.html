@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,114 +7,132 @@
 <title>For You ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Georgia,serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  text-align:center;
+  min-height:100vh;
+  overflow-x:hidden;
 }
-
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  color: white;
-  text-align: center;
-  min-height: 100vh;
-  overflow-x: hidden;
+.page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
 }
-
-.page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 25px;
+.card{
+  background:rgba(255,255,255,.16);
+  backdrop-filter:blur(12px);
+  border-radius:30px;
+  padding:35px 25px;
+  width:100%;
+  max-width:950px;
+  box-shadow:0 10px 40px rgba(0,0,0,.2);
 }
-
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 30px;
-  padding: 35px 25px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+h1{font-size:clamp(30px,6vw,42px);margin-bottom:10px}
+h2{font-size:27px}
+p{font-size:18px;line-height:1.7}
+button,.song-link{
+  border:none;
+  background:white;
+  color:#e94b70;
+  padding:14px 25px;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:20px;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
 }
-
-h1 {
-  font-size: 38px;
-  margin-bottom: 10px;
+button:hover,.song-link:hover{transform:scale(1.04)}
+.hidden{display:none!important}
+.heart{
+  position:fixed;
+  bottom:-25px;
+  font-size:25px;
+  animation:float 5s linear forwards;
+  pointer-events:none;
+  z-index:10;
 }
-
-h2 {
-  font-size: 28px;
+@keyframes float{
+  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
 }
-
-p {
-  font-size: 18px;
-  line-height: 1.7;
+.big-heart{font-size:75px;animation:beat 1.2s infinite}
+@keyframes beat{50%{transform:scale(1.15)}}
+.message{
+  background:rgba(255,255,255,.18);
+  border-radius:20px;
+  padding:20px;
+  margin-top:20px;
 }
-
-button {
-  border: none;
-  background: white;
-  color: #e94b70;
-  padding: 15px 28px;
-  border-radius: 30px;
-  font-size: 17px;
-  cursor: pointer;
-  margin-top: 20px;
-  font-weight: bold;
+.memory-section{
+  margin-top:45px;
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,.35);
 }
-
-button:hover {
-  transform: scale(1.05);
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+  margin-top:22px;
 }
-
-.hidden {
-  display: none;
+.photo{
+  background:#fff7f8;
+  color:#a72e55;
+  border-radius:14px;
+  padding:9px 9px 15px;
+  box-shadow:0 5px 18px rgba(0,0,0,.12);
 }
-
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 25px;
-  animation: float 5s linear infinite;
-  pointer-events: none;
+.photo img{
+  display:block;
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:9px;
 }
-
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
-  }
+.photo p{font-size:16px;margin:10px 3px 0}
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
+  margin-top:22px;
 }
-
-.big-heart {
-  font-size: 75px;
-  animation: beat 1.2s infinite;
+.video-grid video{
+  width:100%;
+  max-height:430px;
+  border-radius:14px;
+  background:#31101e;
 }
-
-@keyframes beat {
-  50% {
-    transform: scale(1.15);
-  }
+.song-card{
+  background:rgba(255,255,255,.18);
+  border-radius:20px;
+  padding:20px;
+  margin-top:20px;
 }
-
-.message {
-  background: rgba(255,255,255,0.18);
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 20px;
+.song-card iframe{
+  width:100%;
+  max-width:560px;
+  aspect-ratio:16/9;
+  border:0;
+  border-radius:12px;
+}
+.small-note{font-size:13px;opacity:.9}
+@media(max-width:480px){
+  .page{padding:14px}
+  .card{padding:25px 16px}
+  .photo img{height:230px}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ORIGINAL OPENING SCREEN -->
 <div class="page" id="start">
   <div class="card">
     <div class="big-heart">💗</div>
@@ -126,13 +145,11 @@ button:hover {
       But you have to open it yourself...
     </p>
 
-    <button onclick="openGift()">
-      🎁 Open Your Gift
-    </button>
+    <button onclick="openGift()">🎁 Open Your Gift</button>
   </div>
 </div>
 
-
+<!-- ORIGINAL BIRTHDAY LETTER: WORDING PRESERVED -->
 <div class="page hidden" id="gift">
   <div class="card">
 
@@ -147,7 +164,6 @@ button:hover {
     </p>
 
     <div class="message">
-
       <h2>💌 A Little Message For You</h2>
 
       <p>
@@ -167,17 +183,13 @@ button:hover {
         And I hope I get to be there
         for many more birthdays with you. ❤️
       </p>
-
     </div>
 
-    <button onclick="showSecret()">
-      💝 One More Thing...
-    </button>
-
+    <button onclick="showSecret()">💝 One More Thing...</button>
   </div>
 </div>
 
-
+<!-- ORIGINAL SECRET MESSAGE + NEW MEMORIES -->
 <div class="page hidden" id="secret">
   <div class="card">
 
@@ -185,12 +197,12 @@ button:hover {
 
     <h1>My Favourite Person ❤️</h1>
 
+    <!-- Original message preserved exactly -->
     <p>
       If I could give you one thing today,
       it would be the ability to see yourself
       through my eyes.
       <br><br>
-
       Then you would understand
       just how precious you are to me.
       <br><br>
@@ -207,50 +219,173 @@ button:hover {
       still waiting for us.
     </p>
 
+    <!-- NEW PHOTO GALLERY -->
+    <div class="memory-section">
+      <h1>Our Memories 📸</h1>
+      <p>Baby & Mumma — little moments, lots of love. ❤️</p>
+
+      <div class="gallery">
+        <div class="photo">
+          <img src="tv.jpeg" alt="Our memory 1" loading="lazy">
+          <p>A little piece of us 💗</p>
+        </div>
+
+        <div class="photo">
+          <img src="us.jpeg" alt="Our memory 2" loading="lazy">
+          <p>My favourite person ❤️</p>
+        </div>
+
+        <div class="photo">
+          <img src="uss.jpeg" alt="Our memory 3" loading="lazy">
+          <p>Us, always 💕</p>
+        </div>
+
+        <div class="photo">
+          <img src="v.jpeg" alt="Our memory 4" loading="lazy">
+          <p>My happy place 🥹</p>
+        </div>
+
+        <div class="photo">
+          <img src="v2.jpeg" alt="Our memory 5" loading="lazy">
+          <p>Little moments, big love 💌</p>
+        </div>
+
+        <div class="photo">
+          <img src="v3.jpeg" alt="Our memory 6" loading="lazy">
+          <p>My kind of happiness 🌷</p>
+        </div>
+
+        <div class="photo">
+          <img src="v4.jpeg" alt="Our memory 7" loading="lazy">
+          <p>Just you and me 💖</p>
+        </div>
+
+        <div class="photo">
+          <img src="v6.jpeg" alt="Our memory 8" loading="lazy">
+          <p>Forever in my heart 💞</p>
+        </div>
+
+        <div class="photo">
+          <img src="we.jpeg" alt="Our memory 9" loading="lazy">
+          <p>Our story, our way ❤️</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW PERSONAL VIDEOS -->
+    <div class="memory-section">
+      <h1>Our Little Moments 🎬</h1>
+      <p>Press play to relive our memories, Baby. ❤️</p>
+
+      <div class="video-grid">
+        <video controls playsinline preload="metadata">
+          <source src="us.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+
+        <video controls playsinline preload="metadata">
+          <source src="v7.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+
+        <video controls playsinline preload="metadata">
+          <source src="we2.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+
+        <video controls playsinline preload="metadata">
+          <source src="we3.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+
+        <video controls playsinline preload="metadata">
+          <source src="we5.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+
+        <video controls playsinline preload="metadata">
+          <source src="we56mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+      </div>
+    </div>
+
+    <!-- NEW SONG SECTION -->
+    <div class="memory-section">
+      <h1>Our Song 🎵</h1>
+      <p>For all the feelings that words cannot express. ❤️</p>
+
+      <div class="song-card">
+        <h2>Alfaaz — Hamza Malik × Zain Zohaib</h2>
+
+        <iframe
+          src="https://www.youtube.com/embed/cQq6iLF66Gc"
+          title="Alfaaz by Hamza Malik and Zain Zohaib"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+
+        <p class="small-note">
+          If the player doesn't load, use the button below.
+        </p>
+
+        <a
+          class="song-link"
+          href="https://www.youtube.com/watch?v=cQq6iLF66Gc"
+          target="_blank"
+          rel="noopener noreferrer">
+          🎵 Play Alfaaz on YouTube
+        </a>
+      </div>
+    </div>
+
+    <div class="memory-section">
+      <p>Made with all my love, just for you. ❤️</p>
+      <h2>Your Mumma 💋</h2>
+    </div>
+
   </div>
 </div>
 
-
 <script>
-
-function openGift() {
+function openGift(){
   document.getElementById("start").classList.add("hidden");
   document.getElementById("gift").classList.remove("hidden");
+  window.scrollTo(0,0);
   createHearts();
 }
 
-function showSecret() {
+function showSecret(){
   document.getElementById("gift").classList.add("hidden");
   document.getElementById("secret").classList.remove("hidden");
-
+  window.scrollTo(0,0);
   createHearts();
 }
 
-function createHearts() {
-
-  for (let i = 0; i < 25; i++) {
-
-    let heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML =
-      ["❤️","💗","💕","💖","💘"][Math.floor(Math.random()*5)];
-
-    heart.style.left =
-      Math.random() * 100 + "%";
-
-    heart.style.animationDuration =
-      (3 + Math.random() * 4) + "s";
-
-    heart.style.animationDelay =
-      Math.random() * 2 + "s";
-
+function createHearts(){
+  for(let i=0;i<25;i++){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.textContent=["❤️","💗","💕","💖","💘"][
+      Math.floor(Math.random()*5)
+    ];
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(3+Math.random()*4)+"s";
+    heart.style.animationDelay=Math.random()*2+"s";
     document.body.appendChild(heart);
-
+    setTimeout(()=>heart.remove(),8000);
   }
 }
 
+document.querySelectorAll("video").forEach(video=>{
+  video.addEventListener("play",()=>{
+    document.querySelectorAll("video").forEach(other=>{
+      if(other!==video) other.pause();
+    });
+  });
+});
 </script>
 
 </body>
