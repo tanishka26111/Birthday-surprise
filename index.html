@@ -329,6 +329,13 @@ function showPage(pageId) {
 
 function startVideos() {
     showPage("videos");
+
+    // Start Main Agar Kahoon lo-fi background music
+    document.getElementById("backgroundSong").src =
+        "https://www.youtube.com/embed/85X3VDOKWis?autoplay=1&loop=1&playlist=85X3VDOKWis";
+
+    document.getElementById("backgroundMusic").style.display = "block";
+
     currentVideoIndex = 0;
     loadVideo(true);
 }
